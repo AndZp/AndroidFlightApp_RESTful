@@ -10,9 +10,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -36,10 +36,8 @@ import ua.com.ukrelektro.flightclient.R;
 import ua.com.ukrelektro.flightclient.client.FlightRSClient;
 import ua.com.ukrelektro.flightclient.client.actions.CheckReservationByCodeAction;
 import ua.com.ukrelektro.flightclient.client.actions.GetAllCitiesAction;
-import ua.com.ukrelektro.flightclient.client.actions.SearchFlightsAction;
 import ua.com.ukrelektro.flightclient.gui.adapters.SpinnerCitiesAdapter;
 import ua.com.ukrelektro.flightclient.models.City;
-import ua.com.ukrelektro.flightclient.models.Flight;
 import ua.com.ukrelektro.flightclient.models.Reservation;
 
 public class MainActivity extends AppCompatActivity {
@@ -47,10 +45,14 @@ public class MainActivity extends AppCompatActivity {
     private FlightRSClient flightRSClient;
 
 
-    @Bind(R.id.spinnerCityFrom)Spinner spinnerFrom;
-    @Bind(R.id.spinnerCityTo)Spinner spinnerTo;
-    @Bind(R.id.etSetDate)EditText etSetDate;
-    @Bind(R.id.btnCheck) Button btnCheck;
+    @Bind(R.id.spinnerCityFrom)
+    Spinner spinnerFrom;
+    @Bind(R.id.spinnerCityTo)
+    Spinner spinnerTo;
+    @Bind(R.id.etSetDate)
+    EditText etSetDate;
+    @Bind(R.id.btnCheck)
+    Button btnCheck;
 
     private DatePickerDialog datePickerDialog;
 
@@ -77,46 +79,54 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
         FlightRSClient.getInstance().getAllCities();
 
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
 
-        etSetDate.setText( dateFormatter.format(Calendar.getInstance().getTime()));
+        etSetDate.setText(dateFormatter.format(Calendar.getInstance().getTime()));
 
         setDateTimeField();
 
 
     }
 
-    @OnClick(R.id.btnSerach) void searchFlights() {
+    @OnClick(R.id.btnSerach)
+    void searchFlights() {
+
+
+
         Date date = null;
         City fromCity = null;
         City toCity = null;
         try {
             date = dateFormatter.parse(etSetDate.getText().toString());
-            fromCity = (City)spinnerFrom.getSelectedItem();
-            toCity =(City) spinnerTo.getSelectedItem();
+            fromCity = (City) spinnerFrom.getSelectedItem();
+            toCity = (City) spinnerTo.getSelectedItem();
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        if (date!=null && fromCity != null && toCity != null) {
+        if (date != null && fromCity != null && toCity != null) {
 
-            FlightRSClient.getInstance().searchFlight(date, fromCity,toCity);
+            Intent intent = new Intent(this, FlightResultsActivity.class);
+            intent.putExtra("cityFrom", fromCity.getName());
+            intent.putExtra("cityTo", toCity.getName());
+            intent.putExtra("date", dateFormatter.format(date));
+            startActivity(intent);
+            FlightRSClient.getInstance().searchFlight(date, fromCity, toCity);
         }
 
-        Intent intent = new Intent(this, FlightResultsActivity.class);
-        startActivity(intent);
     }
 
-    @OnClick(R.id.btnCheck) void checkReservationByCode() {
+    @OnClick(R.id.btnCheck)
+    void checkReservationByCode() {
         FragmentManager manager = getSupportFragmentManager();
         CheckDialog checkDialog = new CheckDialog();
         checkDialog.show(manager, "Check dialog");
     }
 
-    @OnClick(R.id.etSetDate) void submit() {
+
+    @OnClick(R.id.etSetDate)
+    void submit() {
         datePickerDialog.show();
     }
 
@@ -132,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
                 etSetDate.setText(dateFormatter.format(newDate.getTime()));
             }
 
-        },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+        }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
 
     }
 
@@ -147,9 +157,6 @@ public class MainActivity extends AppCompatActivity {
             initSpinnersCity(cities);
         }
     }
-
-
-
 
 
     private SpinnerCitiesAdapter adapter;
@@ -180,8 +187,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onResume() {super.onResume();
-       FlightRSClient.getInstance().getSantaRest().subscribe(this);
+    protected void onResume() {
+        super.onResume();
+        FlightRSClient.getInstance().getSantaRest().subscribe(this);
     }
 
     @Override

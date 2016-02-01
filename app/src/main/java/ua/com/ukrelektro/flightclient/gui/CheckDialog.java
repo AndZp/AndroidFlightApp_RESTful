@@ -8,22 +8,19 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import com.squareup.otto.Subscribe;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import ua.com.ukrelektro.flightclient.R;
 import ua.com.ukrelektro.flightclient.client.FlightRSClient;
-import ua.com.ukrelektro.flightclient.client.actions.CheckReservationByCodeAction;
-import ua.com.ukrelektro.flightclient.models.Reservation;
 
 /**
  * Created by User on 30-Jan-16.
  */
 public class CheckDialog extends DialogFragment {
-@Bind(R.id.etCheckCode) EditText etCheckCode;
+    @Bind(R.id.etCheckCode)
+    EditText etCheckCode;
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
@@ -52,12 +49,11 @@ public class CheckDialog extends DialogFragment {
     }
 
 
-
     @Override
     public void onResume() {
         super.onResume();
         FlightRSClient.getInstance().getSantaRest().subscribe(this);
-            }
+    }
 
     @Override
     public void onPause() {

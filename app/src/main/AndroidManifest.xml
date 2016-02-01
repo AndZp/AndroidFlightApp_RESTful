@@ -24,6 +24,10 @@
         <activity
             android:name=".gui.FlightResultsActivity"
             android:label="@string/title_activity_flight_results"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".gui.BuyActivity"
+            android:label="@string/title_activity_buy"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

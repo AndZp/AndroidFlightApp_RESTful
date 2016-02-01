@@ -2,11 +2,8 @@ package ua.com.ukrelektro.flightclient.client;
 
 import com.santarest.RequestBuilder;
 import com.santarest.SantaRest;
-import com.squareup.otto.Subscribe;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import ua.com.ukrelektro.flightclient.client.actions.CheckReservationByCodeAction;
 import ua.com.ukrelektro.flightclient.client.actions.GetAllCitiesAction;
@@ -22,8 +19,8 @@ public class FlightRSClient {
 
     private static FlightRSClient flightRSClient;
 
-    private FlightRSClient(){
-    santaRest = initSantaRest();
+    private FlightRSClient() {
+        santaRest = initSantaRest();
     }
 
     public static FlightRSClient getInstance() {
@@ -38,15 +35,14 @@ public class FlightRSClient {
         santaRest.sendAction(new GetAllCitiesAction());
     }
 
-    public void checkReservationByCode(String code){
+    public void checkReservationByCode(String code) {
         santaRest.sendAction(new CheckReservationByCodeAction(code));
     }
 
 
-
     public void searchFlight(Date date, City fromCity, City toCity) {
 
-              santaRest.sendAction(new SearchFlightsAction(date.getTime(), fromCity, toCity));
+        santaRest.sendAction(new SearchFlightsAction(date.getTime(), fromCity, toCity));
     }
 
     private SantaRest initSantaRest() {

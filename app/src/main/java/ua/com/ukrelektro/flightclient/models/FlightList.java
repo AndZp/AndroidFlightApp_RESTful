@@ -10,14 +10,14 @@ public class FlightList {
     public FlightList() {
     }
 
-    private List<Flight> list;
+    private List<Flight> flightList;
 
-    public List<Flight> getList() {
-        return list;
+    public List<Flight> getFlightList() {
+        return flightList;
     }
 
-    public void setList(List<Flight> list) {
-        this.list = list;
+    public void setFlightList(List<Flight> flightList) {
+        this.flightList = flightList;
     }
 
 }

@@ -1,5 +1,6 @@
 package ua.com.ukrelektro.flightclient.gui.adapters;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,10 +20,11 @@ import ua.com.ukrelektro.flightclient.models.Flight;
 /**
  * Created by User on 30-Jan-16.
  */
-public class FlightAdapter  extends RecyclerView.Adapter<FlightAdapter.ViewHolder> {
+public class FlightAdapter extends RecyclerView.Adapter<FlightAdapter.ViewHolder> {
 
     private List<Flight> flights;
-    private SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);;
+    private SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+
 
     public FlightAdapter(List<Flight> flights) {
         this.flights = flights;
@@ -58,17 +60,26 @@ public class FlightAdapter  extends RecyclerView.Adapter<FlightAdapter.ViewHolde
     /**
      * Реализация класса ViewHolder, хранящего ссылки на виджеты.
      */
-    class ViewHolder extends RecyclerView.ViewHolder {
-       @Bind(R.id.tvCodeRI) TextView tvCode;
-        @Bind(R.id.tvAircraftRI) TextView tvAircraft;
-        @Bind(R.id.tvDurationRI) TextView tvDuraction;
-        @Bind(R.id.tvArriverRI) TextView tvArrivel;
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        @Bind(R.id.tvCodeRI)
+        TextView tvCode;
+        @Bind(R.id.tvAircraftRI)
+        TextView tvAircraft;
+        @Bind(R.id.tvDurationRI)
+        TextView tvDuraction;
+        @Bind(R.id.tvArriverRI)
+        TextView tvArrivel;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
 
+        }
+
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent();
         }
     }
 }

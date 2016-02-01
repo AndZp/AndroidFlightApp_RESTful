@@ -7,9 +7,10 @@ import java.util.List;
  */
 public class Aircraft {
 
-    public Aircraft(){
+    public Aircraft() {
 
     }
+
     private long id;
     private String name;
     private String desc;

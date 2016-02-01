@@ -27,15 +27,15 @@ public class SpinnerCitiesAdapter extends ArrayAdapter {
         this.cities = cities;
     }
 
-    public int getCount(){
+    public int getCount() {
         return cities.size();
     }
 
-    public City getItem(int position){
+    public City getItem(int position) {
         return cities.get(position);
     }
 
-    public long getItemId(int position){
+    public long getItemId(int position) {
         return position;
     }
 
@@ -66,8 +66,6 @@ public class SpinnerCitiesAdapter extends ArrayAdapter {
 
         return label;
     }
-
-
 
 
 }

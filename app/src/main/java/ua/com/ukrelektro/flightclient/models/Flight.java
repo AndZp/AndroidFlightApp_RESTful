@@ -1,13 +1,11 @@
 package ua.com.ukrelektro.flightclient.models;
 
-import java.util.Calendar;
-
 /**
  * Created by User on 30-Jan-16.
  */
 public class Flight {
 
-    public Flight(){
+    public Flight() {
 
     }
 

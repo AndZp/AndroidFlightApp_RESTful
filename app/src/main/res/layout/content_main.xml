@@ -17,16 +17,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/spinnerCityFrom"
         android:layout_below="@+id/tvFrom"
-        android:layout_alignParentStart="true"
-        />
+        android:layout_alignParentStart="true" />
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/spinnerCityTo"
         android:layout_below="@+id/tvTo"
-        android:layout_alignParentStart="true"
-        />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -49,7 +47,6 @@
         android:layout_alignEnd="@+id/spinnerCityFrom" />
 
 
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -67,8 +64,7 @@
         android:id="@+id/etSetDate"
         android:text="Set date:"
         android:layout_below="@+id/tvSetDate"
-        android:layout_alignParentStart="true"
-         />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"

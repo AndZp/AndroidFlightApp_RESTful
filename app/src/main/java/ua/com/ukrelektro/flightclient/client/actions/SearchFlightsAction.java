@@ -1,6 +1,7 @@
 package ua.com.ukrelektro.flightclient.client.actions;
 
 import com.santarest.annotations.Path;
+import com.santarest.annotations.RequestHeader;
 import com.santarest.annotations.Response;
 import com.santarest.annotations.RestAction;
 import com.santarest.annotations.Status;
@@ -9,11 +10,10 @@ import ua.com.ukrelektro.flightclient.models.City;
 import ua.com.ukrelektro.flightclient.models.FlightList;
 
 /**
- * Created by User on 30-Jan-16.
+ * /
  */
 @RestAction(value = "/searchFlight/{date}/{cityFromId}/{cityToId}",
-            method = RestAction.Method.POST,
-            type = RestAction.Type.FORM_URL_ENCODED)
+        method = RestAction.Method.POST)
 public class SearchFlightsAction {
 
     public SearchFlightsAction(long date, City fromCity, City toCity) {
@@ -22,14 +22,27 @@ public class SearchFlightsAction {
         this.cityToId = toCity.getId();
     }
 
+    @RequestHeader("Content-Type")
+    String type = "application/json";
+
     @Path("date")
     Long date;
+
+   /* @Query("date")
+    Long queryDate;*/
+
 
     @Path("cityFromId")
     Long cityFromId;
 
+  /*  @Query("cityFromId")
+    long queryFromId;*/
+
     @Path("cityToId")
     Long cityToId;
+
+   /* @Query("cityToId")
+    long queryCityToId;*/
 
     @Status
     boolean success;
@@ -77,3 +90,4 @@ public class SearchFlightsAction {
         this.flightList = flightList;
     }
 }
+
